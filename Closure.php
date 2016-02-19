@@ -36,6 +36,7 @@
 
 namespace Hoa\Dispatcher;
 
+use Hoa\Consistency;
 use Hoa\Router;
 use Hoa\View;
 
@@ -151,7 +152,7 @@ class Closure extends Dispatcher
     {
         $kitname = $this->getKitName();
         if (!empty($kitname)) {
-            $kit = dnew($this->getKitName(), $rtv);
+            $kit = Consistency\Autoloader::dnew($this->getKitName(), $rtv);
 
             if (!($kit instanceof Kit)) {
                 throw new Exception(
