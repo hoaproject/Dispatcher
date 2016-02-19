@@ -8,7 +8,7 @@
  *
  * New BSD License
  *
- * Copyright © 2007-2015, Hoa community. All rights reserved.
+ * Copyright © 2007-2016, Hoa community. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -45,7 +45,7 @@ use Hoa\View;
  * This class dispatches on a closure, nothing more. There is
  * no concept of controller or action, it is just _call and _able.
  *
- * @copyright  Copyright © 2007-2015 Hoa community
+ * @copyright  Copyright © 2007-2016 Hoa community
  * @license    New BSD License
  */
 class Closure extends Dispatcher
@@ -60,7 +60,7 @@ class Closure extends Dispatcher
      * @throws  \Hoa\Dispatcher\Exception
      */
     protected function resolve(
-        Array $rule,
+        array $rule,
         Router $router,
         View\Viewable $view = null
     ) {
@@ -76,7 +76,7 @@ class Closure extends Dispatcher
         $arguments  = [];
         $reflection = null;
 
-        $this->populateVariables($variables, $rtv);
+        $this->populateKit($variables, $rtv);
         if ($call instanceof \Closure) {
             $called     = $call;
             $reflection = new \ReflectionMethod($call, '__invoke');
@@ -92,9 +92,9 @@ class Closure extends Dispatcher
 
                 if (false === $parameter->isOptional()) {
                     throw new Exception(
-                        'The closured action for the rule with pattern %s needs ' .
-                        'a value for the parameter $%s and this value does not ' .
-                        'exist.',
+                        'The closured action for the rule with pattern %s ' .
+                        'needs a value for the parameter $%s and this value ' .
+                        'does not exist.',
                         1,
                         [$rule[Router::RULE_PATTERN], $name]
                     );
@@ -123,9 +123,9 @@ class Closure extends Dispatcher
 
                 if (false === $parameter->isOptional()) {
                     throw new Exception(
-                        'The functional action for the rule with pattern %s needs ' .
-                        'a value for the parameter $%s and this value does not ' .
-                        'exist.',
+                        'The functional action for the rule with pattern %s ' .
+                        'needs a value for the parameter $%s and this value ' .
+                        'does not exist.',
                         3,
                         [$rule[Router::RULE_PATTERN], $name]
                     );
@@ -138,10 +138,16 @@ class Closure extends Dispatcher
         } else {
             $return = $reflection->invokeArgs($called, $arguments);
         }
+
         return $return;
     }
 
-    protected function populateVariables(&$variables, $rtv)
+    /**
+     * Populate Dispatcher\Kit in the variable collection
+     * @param array $variables Variable collection used as resolver parameters
+     * @param array $rtv       Constructor's arguments.
+     */
+    protected function populateKit(&$variables, $rtv)
     {
         $kitname = $this->getKitName();
         if (!empty($kitname)) {
