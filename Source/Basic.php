@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Hoa
  *
@@ -8,7 +10,7 @@
  *
  * New BSD License
  *
- * Copyright © 2007-2017, Hoa community. All rights reserved.
+ * Copyright © 2007-2018, Hoa community. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -45,21 +47,9 @@ use Hoa\View;
  *
  * A basic and generic dispatcher. It supports function, closure, object and
  * class (controller::action).
- *
- * @copyright  Copyright © 2007-2017 Hoa community
- * @license    New BSD License
  */
 class Basic extends Dispatcher
 {
-    /**
-     * Resolve the dispatch call.
-     *
-     * @param   array                $rule      Rule.
-     * @param   \Hoa\Router          $router    Router.
-     * @param   \Hoa\View\Viewable   $view      View.
-     * @return  mixed
-     * @throws  \Hoa\Dispatcher\Exception
-     */
     protected function resolve(
         array $rule,
         Router $router,
@@ -67,16 +57,12 @@ class Basic extends Dispatcher
     ) {
         $called     = null;
         $variables  = &$rule[Router::RULE_VARIABLES];
-        $call       = isset($variables['controller'])
-                          ? $variables['controller']
-                          : (isset($variables['_call'])
-                                 ? $variables['_call']
-                                 : $rule[Router::RULE_CALL]);
-        $able       = isset($variables['action'])
-                          ? $variables['action']
-                          : (isset($variables['_able'])
-                                 ? $variables['_able']
-                                 : $rule[Router::RULE_ABLE]);
+        $call       = $variables['controller']
+                          ?? ($variables['_call']
+                                 ?? $rule[Router::RULE_CALL]);
+        $able       = $variables['action']
+                          ?? ($variables['_able']
+                                 ?? $rule[Router::RULE_ABLE]);
         $rtv        = [$router, $this, $view];
         $arguments  = [];
         $reflection = null;

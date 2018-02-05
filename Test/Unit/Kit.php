@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Hoa
  *
@@ -8,7 +10,7 @@
  *
  * New BSD License
  *
- * Copyright © 2007-2017, Hoa community. All rights reserved.
+ * Copyright © 2007-2018, Hoa community. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -43,13 +45,10 @@ use Hoa\Test;
  * Class \Hoa\Dispatcher\Test\Unit\Kit.
  *
  * Test suite of the kit.
- *
- * @copyright  Copyright © 2007-2017 Hoa community
- * @license    New BSD License
  */
 class Kit extends Test\Unit\Suite
 {
-    public function case_construct()
+    public function case_construct(): void
     {
         $this
             ->given(
@@ -69,7 +68,7 @@ class Kit extends Test\Unit\Suite
                     ->isNull();
     }
 
-    public function case_construct_no_view()
+    public function case_construct_no_view(): void
     {
         $this
             ->given(
