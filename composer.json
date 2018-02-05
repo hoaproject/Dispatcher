@@ -24,14 +24,14 @@
     },
     "require": {
         "php"            : ">=7.1",
-        "hoa/consistency": "~1.0",
-        "hoa/exception"  : "~1.0",
-        "hoa/zformat"    : "~1.0"
+        "hoa/consistency": "dev-master",
+        "hoa/exception"  : "dev-master",
+        "hoa/zformat"    : "dev-master"
     },
     "require-dev": {
-        "hoa/router": "~3.0",
-        "hoa/test"  : "~2.0",
-        "hoa/view"  : "~3.0"
+        "hoa/router": "dev-master",
+        "hoa/test"  : "dev-master",
+        "hoa/view"  : "dev-master"
     },
     "autoload": {
         "psr-4": {
