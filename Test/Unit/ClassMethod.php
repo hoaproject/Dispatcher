@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Hoa
  *
@@ -8,7 +10,7 @@
  *
  * New BSD License
  *
- * Copyright © 2007-2017, Hoa community. All rights reserved.
+ * Copyright © 2007-2018, Hoa community. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -44,13 +46,10 @@ use Hoa\Test;
  * Class \Hoa\Dispatcher\Test\Unit\ClassMethod.
  *
  * Test suite of the class/method dispatcher.
- *
- * @copyright  Copyright © 2007-2017 Hoa community
- * @license    New BSD License
  */
 class ClassMethod extends Test\Unit\Suite
 {
-    public function case_callable_in_rule_pattern()
+    public function case_callable_in_rule_pattern(): void
     {
         $this
             ->given(
@@ -76,7 +75,7 @@ class ClassMethod extends Test\Unit\Suite
             ->when($dispatcher->dispatch($router));
     }
 
-    public function case_callable_in_rule_definition()
+    public function case_callable_in_rule_definition(): void
     {
         $this
             ->given(
@@ -98,7 +97,7 @@ class ClassMethod extends Test\Unit\Suite
             ->when($dispatcher->dispatch($router));
     }
 
-    public function case_asynchronous()
+    public function case_asynchronous(): void
     {
         $this
             ->given(
@@ -121,7 +120,7 @@ class ClassMethod extends Test\Unit\Suite
             ->when($dispatcher->dispatch($router));
     }
 
-    public function case_class_not_found()
+    public function case_class_not_found(): void
     {
         $this
             ->given(
@@ -140,13 +139,13 @@ class ClassMethod extends Test\Unit\Suite
                     'synchronous.able' => '(:able:)'
                 ])
             )
-            ->exception(function () use ($dispatcher, $router) {
+            ->exception(function () use ($dispatcher, $router): void {
                 $dispatcher->dispatch($router);
             })
                 ->isInstanceOf('Hoa\Dispatcher\Exception');
     }
 
-    public function case_method_not_found()
+    public function case_method_not_found(): void
     {
         $this
             ->given(
@@ -165,13 +164,13 @@ class ClassMethod extends Test\Unit\Suite
                     'synchronous.able' => '(:able:)'
                 ])
             )
-            ->exception(function () use ($dispatcher, $router) {
+            ->exception(function () use ($dispatcher, $router): void {
                 $dispatcher->dispatch($router);
             })
                 ->isInstanceOf('Hoa\Dispatcher\Exception');
     }
 
-    public function case_kit_dnew()
+    public function case_kit_dnew(): void
     {
         $this
             ->given(
@@ -195,7 +194,7 @@ class ClassMethod extends Test\Unit\Suite
             ->when($dispatcher->dispatch($router));
     }
 
-    public function case_an_argument_is_missing()
+    public function case_an_argument_is_missing(): void
     {
         $this
             ->given(
@@ -214,13 +213,13 @@ class ClassMethod extends Test\Unit\Suite
                     'synchronous.able' => '(:able:)'
                 ])
             )
-            ->exception(function () use ($dispatcher, $router) {
+            ->exception(function () use ($dispatcher, $router): void {
                 $dispatcher->dispatch($router);
             })
                 ->isInstanceOf('Hoa\Dispatcher\Exception');
     }
 
-    public function case_an_optional_argument_is_missing()
+    public function case_an_optional_argument_is_missing(): void
     {
         $this
             ->given(
@@ -242,7 +241,7 @@ class ClassMethod extends Test\Unit\Suite
             ->when($dispatcher->dispatch($router));
     }
 
-    public function case_arguments_are_unordered()
+    public function case_arguments_are_unordered(): void
     {
         $this
             ->given(
@@ -277,7 +276,7 @@ class ClassMethod extends Test\Unit\Suite
         return $router;
     }
 
-    public function dispatchedMethod($test, $foo, $bar)
+    public function dispatchedMethod($test, $foo, $bar): void
     {
         $test
             ->string($foo)
@@ -295,7 +294,7 @@ class ClassMethod extends Test\Unit\Suite
         return $this->dispatchedMethod($test, $foo, $bar);
     }
 
-    public function dispatchedMethodOptional($test, $foo, $bar = null)
+    public function dispatchedMethodOptional($test, $foo, $bar = null): void
     {
         $test
             ->string($foo)
@@ -304,7 +303,7 @@ class ClassMethod extends Test\Unit\Suite
                 ->isNull();
     }
 
-    public function dispatchedMethodWithKit($test, $_this)
+    public function dispatchedMethodWithKit($test, $_this): void
     {
         $test
             ->object($_this)
@@ -328,7 +327,7 @@ class MockKit extends LUT\Kit
 {
     public $hasBeenConstructed = false;
 
-    public function construct()
+    public function construct(): void
     {
         $this->hasBeenConstructed = true;
     }

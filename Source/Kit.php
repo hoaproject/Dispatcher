@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Hoa
  *
@@ -8,7 +10,7 @@
  *
  * New BSD License
  *
- * Copyright © 2007-2017, Hoa community. All rights reserved.
+ * Copyright © 2007-2018, Hoa community. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -43,37 +45,26 @@ use Hoa\View;
  * Class \Hoa\Dispatcher\Kit.
  *
  * A structure, given to action, that holds some important data.
- *
- * @copyright  Copyright © 2007-2017 Hoa community
- * @license    New BSD License
  */
 class Kit
 {
     /**
      * The router.
-     *
-     * @var \Hoa\Router
      */
     public $router     = null;
 
     /**
      * The dispatcher.
-     *
-     * @var \Hoa\Dispatcher
      */
     public $dispatcher = null;
 
     /**
      * The view.
-     *
-     * @var \Hoa\View\Viewable
      */
     public $view       = null;
 
     /**
      * Data from the view.
-     *
-     * @var mixed
      */
     public $data       = null;
 
@@ -81,10 +72,6 @@ class Kit
 
     /**
      * Build a dispatcher kit.
-     *
-     * @param   \Hoa\Router           $router        The router.
-     * @param   \Hoa\Dispatcher       $dispatcher    The dispatcher.
-     * @param   \Hoa\View\Viewable    $view          The view.
      */
     public function __construct(
         Router        $router,
@@ -104,10 +91,8 @@ class Kit
 
     /**
      * This method is called just after the __construct() method.
-     *
-     * @return  void
      */
-    public function construct()
+    public function construct(): void
     {
         return;
     }

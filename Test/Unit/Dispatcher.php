@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Hoa
  *
@@ -8,7 +10,7 @@
  *
  * New BSD License
  *
- * Copyright © 2007-2017, Hoa community. All rights reserved.
+ * Copyright © 2007-2018, Hoa community. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -43,13 +45,10 @@ use Hoa\Test;
  * Class \Hoa\Dispatcher\Test\Unit\Dispatcher.
  *
  * Test suite of the abstract dispatcher.
- *
- * @copyright  Copyright © 2007-2017 Hoa community
- * @license    New BSD License
  */
 class Dispatcher extends Test\Unit\Suite
 {
-    public function case_getParameters()
+    public function case_getParameters(): void
     {
         $this
             ->given($dispatcher = new \Mock\Hoa\Dispatcher())
@@ -59,7 +58,7 @@ class Dispatcher extends Test\Unit\Suite
                     ->isInstanceOf('Hoa\Zformat\Parameter');
     }
 
-    public function case_kitname()
+    public function case_kitname(): void
     {
         $this
             ->given($dispatcher = new \Mock\Hoa\Dispatcher())
@@ -73,7 +72,7 @@ class Dispatcher extends Test\Unit\Suite
                     ->isEqualTo('foo');
     }
 
-    public function case_dispatch_already_routed()
+    public function case_dispatch_already_routed(): void
     {
         $this
             ->given(
@@ -88,7 +87,7 @@ class Dispatcher extends Test\Unit\Suite
                     &$routedRouter,
                     &$routedView,
                     &$routedParameters
-                ) {
+                ): void {
                     $routedRule       = $rule;
                     $routedRouter     = $router;
                     $routedView       = $view;
@@ -120,7 +119,7 @@ class Dispatcher extends Test\Unit\Suite
                     ->isEqualTo('baar');
     }
 
-    public function case_dispatch_auto_route()
+    public function case_dispatch_auto_route(): void
     {
         $this
             ->given(
@@ -135,7 +134,7 @@ class Dispatcher extends Test\Unit\Suite
                     &$routedRouter,
                     &$routedView,
                     &$routedParameters
-                ) {
+                ): void {
                     $routedRule       = $rule;
                     $routedRouter     = $router;
                     $routedView       = $view;
@@ -173,7 +172,7 @@ class Dispatcher extends Test\Unit\Suite
                     ->isEqualTo('baar');
     }
 
-    public function case_dispatch_return()
+    public function case_dispatch_return(): void
     {
         $this
             ->given(
