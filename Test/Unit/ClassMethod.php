@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Hoa
  *
@@ -44,9 +46,6 @@ use Hoa\Test;
  * Class \Hoa\Dispatcher\Test\Unit\ClassMethod.
  *
  * Test suite of the class/method dispatcher.
- *
- * @copyright  Copyright © 2007-2017 Hoa community
- * @license    New BSD License
  */
 class ClassMethod extends Test\Unit\Suite
 {

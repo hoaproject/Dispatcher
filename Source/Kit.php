@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Hoa
  *
@@ -43,30 +45,27 @@ use Hoa\View;
  * Class \Hoa\Dispatcher\Kit.
  *
  * A structure, given to action, that holds some important data.
- *
- * @copyright  Copyright © 2007-2017 Hoa community
- * @license    New BSD License
  */
 class Kit
 {
     /**
      * The router.
      *
-     * @var \Hoa\Router
+     * @var Router
      */
     public $router     = null;
 
     /**
      * The dispatcher.
      *
-     * @var \Hoa\Dispatcher
+     * @var Dispatcher
      */
     public $dispatcher = null;
 
     /**
      * The view.
      *
-     * @var \Hoa\View\Viewable
+     * @var ?View\Viewable
      */
     public $view       = null;
 
@@ -81,15 +80,11 @@ class Kit
 
     /**
      * Build a dispatcher kit.
-     *
-     * @param   \Hoa\Router           $router        The router.
-     * @param   \Hoa\Dispatcher       $dispatcher    The dispatcher.
-     * @param   \Hoa\View\Viewable    $view          The view.
      */
     public function __construct(
-        Router        $router,
-        Dispatcher    $dispatcher,
-        View\Viewable $view = null
+        Router         $router,
+        Dispatcher     $dispatcher,
+        ?View\Viewable $view = null
     ) {
         $this->router     = $router;
         $this->dispatcher = $dispatcher;
@@ -104,8 +99,6 @@ class Kit
 
     /**
      * This method is called just after the __construct() method.
-     *
-     * @return  void
      */
     public function construct()
     {

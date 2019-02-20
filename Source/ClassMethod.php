@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Hoa
  *
@@ -45,25 +47,16 @@ use Hoa\View;
  *
  * This class dispatches on a class/object and a method, nothing more. There is
  * no concept of controller or action, it is just _call and _able.
- *
- * @copyright  Copyright © 2007-2017 Hoa community
- * @license    New BSD License
  */
 class ClassMethod extends Dispatcher
 {
     /**
      * Resolve the dispatch call.
-     *
-     * @param   array                $rule      Rule.
-     * @param   \Hoa\Router          $router    Router.
-     * @param   \Hoa\View\Viewable   $view      View.
-     * @return  mixed
-     * @throws  \Hoa\Dispatcher\Exception
      */
     protected function resolve(
         array $rule,
         Router $router,
-        View\Viewable $view = null
+        ?View\Viewable $view = null
     ) {
         $called     = null;
         $variables  = &$rule[Router::RULE_VARIABLES];

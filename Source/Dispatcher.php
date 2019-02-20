@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Hoa
  *
@@ -45,23 +47,20 @@ use Hoa\Zformat;
  * Class \Hoa\Dispatcher.
  *
  * Abstract dispatcher.
- *
- * @copyright  Copyright © 2007-2017 Hoa community
- * @license    New BSD License
  */
 abstract class Dispatcher implements Zformat\Parameterizable
 {
     /**
      * Parameters.
      *
-     * @var \Hoa\Zformat\Parameter
+     * @var Zformat\Parameter
      */
     protected $_parameters  = null;
 
     /**
      * Current view.
      *
-     * @var \Hoa\View\Viewable
+     * @var ?View\Viewable
      */
     protected $_currentView = null;
 
@@ -70,14 +69,12 @@ abstract class Dispatcher implements Zformat\Parameterizable
      *
      * @var string
      */
-    protected $_kit         = 'Hoa\Dispatcher\Kit';
+    protected $_kit         = Kit::class;
 
 
 
     /**
      * Build a new dispatcher.
-     *
-     * @param   array   $parameters    Parameters.
      */
     public function __construct(array $parameters = [])
     {
@@ -108,23 +105,16 @@ abstract class Dispatcher implements Zformat\Parameterizable
 
     /**
      * Get parameters.
-     *
-     * @return  \Hoa\Zformat\Parameter
      */
-    public function getParameters()
+    public function getParameters(): Zformat\Parameter
     {
         return $this->_parameters;
     }
 
     /**
      * Dispatch a router rule.
-     *
-     * @param   \Hoa\Router         $router    Router.
-     * @param   \Hoa\View\Viewable  $view      View.
-     * @return  mixed
-     * @throws  \Hoa\Controller\Exception
      */
-    public function dispatch(Router $router, View\Viewable $view = null)
+    public function dispatch(Router $router, ?View\Viewable $view = null)
     {
         $rule = $router->getTheRule();
 
@@ -155,27 +145,17 @@ abstract class Dispatcher implements Zformat\Parameterizable
 
     /**
      * Resolve the dispatch call.
-     *
-     * @param   array               $rule      Rule.
-     * @param   \Hoa\Router         $router    Router.
-     * @param   \Hoa\View\Viewable  $view      View.
-     * @return  mixed
-     * @throws  \Hoa\Dispatcher\Exception
      */
     abstract protected function resolve(
-        array         $rule,
-        Router        $router,
-        View\Viewable $view = null
+        array          $rule,
+        Router         $router,
+        ?View\Viewable $view = null
     );
 
     /**
      * Set kit's name.
-     *
-     * @param   string  $kit    Kit's name.
-     * @return  string
-     * @throws  \Hoa\Dispatcher\Exception
      */
-    public function setKitName($kit)
+    public function setKitName(string $kit): string
     {
         $old        = $this->_kit;
         $this->_kit = $kit;
@@ -185,10 +165,8 @@ abstract class Dispatcher implements Zformat\Parameterizable
 
     /**
      * Get kit's name.
-     *
-     * @return  string
      */
-    public function getKitName()
+    public function getKitName(): string
     {
         return $this->_kit;
     }
@@ -197,4 +175,4 @@ abstract class Dispatcher implements Zformat\Parameterizable
 /**
  * Flex entity.
  */
-Consistency::flexEntity('Hoa\Dispatcher\Dispatcher');
+Consistency::flexEntity(Dispatcher::class);
