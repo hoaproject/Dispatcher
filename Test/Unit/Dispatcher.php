@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Hoa
  *
@@ -36,16 +38,15 @@
 
 namespace Hoa\Dispatcher\Test\Unit;
 
+use Hoa\Dispatcher as LUT;
 use Hoa\Router;
 use Hoa\Test;
+use Hoa\Zformat;
 
 /**
  * Class \Hoa\Dispatcher\Test\Unit\Dispatcher.
  *
  * Test suite of the abstract dispatcher.
- *
- * @copyright  Copyright © 2007-2017 Hoa community
- * @license    New BSD License
  */
 class Dispatcher extends Test\Unit\Suite
 {
@@ -56,7 +57,7 @@ class Dispatcher extends Test\Unit\Suite
             ->when($result = $dispatcher->getParameters())
             ->then
                 ->object($result)
-                    ->isInstanceOf('Hoa\Zformat\Parameter');
+                    ->isInstanceOf(Zformat\Parameter::class);
     }
 
     public function case_kitname()
@@ -66,7 +67,7 @@ class Dispatcher extends Test\Unit\Suite
             ->when($result = $dispatcher->setKitName('foo'))
             ->then
                 ->string($result)
-                    ->isEqualTo('Hoa\Dispatcher\Kit')
+                    ->isEqualTo(LUT\Kit::class)
 
             ->when($result = $dispatcher->getKitName())
                 ->string($result)
@@ -108,7 +109,7 @@ class Dispatcher extends Test\Unit\Suite
                 ->variable($routedView)
                     ->isNull()
                 ->object($routedParameters)
-                    ->isInstanceOf('Hoa\Zformat\Parameter')
+                    ->isInstanceOf(Zformat\Parameter::class)
 
                 ->object($dispatcher->getParameters())
                     ->isIdenticalTo($parameters)
@@ -161,7 +162,7 @@ class Dispatcher extends Test\Unit\Suite
                 ->variable($routedView)
                     ->isNull()
                 ->object($routedParameters)
-                    ->isInstanceOf('Hoa\Zformat\Parameter')
+                    ->isInstanceOf(Zformat\Parameter::class)
 
                 ->object($dispatcher->getParameters())
                     ->isIdenticalTo($parameters)
